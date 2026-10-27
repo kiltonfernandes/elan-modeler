@@ -16,6 +16,7 @@
     "server/**/*.ts",
     "scripts/migrate.ts",
     "scripts/dev-api.ts",
+    "scripts/prepare-deploy.ts",
     "shared/**/*.ts"
   ],
   "exclude": ["**/*.test.ts"]

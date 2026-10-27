@@ -4,7 +4,19 @@ O repositório está preparado para publicar o editor Vite e seis Vercel Functio
 
 Por escolha do projeto, o workspace é **público, sem login ou chave no app**. Quem acessar o endereço pode listar, abrir, alterar e arquivar os modelos. `TURSO_AUTH_TOKEN` é uma credencial do banco, usada somente pelo servidor; não é uma chave exigida do usuário do editor.
 
+## Como a integração automática funciona
+
+Ao conectar o recurso Turso ao projeto, o Marketplace fornece as variáveis `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`. A Vercel as disponibiliza no ambiente selecionado, por exemplo Production, e o backend do Élan lê esses valores em `process.env`. O token não precisa ser colocado no código ou no GitHub. Variáveis novas passam a valer em novos deployments. [Turso no Marketplace](https://vercel.com/marketplace/tursocloud/database), [variáveis de integrações](https://vercel.com/docs/environment-variables#integration-environment-variables).
+
+Neste aplicativo, o caminho é **editor ou cliente MCP → Function do Élan na Vercel → Turso por HTTP → resposta ao cliente**. O SDK remoto usa a URL e o token no servidor. O banco continua sendo um recurso Turso; este código usa SQL por HTTP. [Modelos de acesso Turso/Vercel](https://docs.turso.tech/integrations/vercel).
+
+O schema do Élan é definido pelo próprio projeto em `db/migrations/`, separadamente da conexão do Marketplace. O passo de produção `scripts/prepare-deploy.ts` aplica/verifica essas migrações; a integração fornece as credenciais usadas por esse passo. No uso normal, o editor e o MCP compartilham os mesmos modelos salvos, enquanto o autosave local do navegador continua separado do envio manual à nuvem.
+
 ## 1. Criar o banco no Turso
+
+**Pelo Marketplace da Vercel:** crie o banco Turso e conecte ao projeto `elan-modeler`, ambiente **Production**, sem prefixo personalizado. A integração adiciona `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`. Mantenha os valores como Sensitive. Para esta configuração inicial, deixe a criação de branches de banco por deploy desmarcada. Confira os nomes das variáveis, sem expor seus valores. [Integração oficial](https://vercel.com/marketplace/tursocloud/database).
+
+Com a integração conectada, o deploy de produção executa `npm run build:vercel`: primeiro compila o aplicativo e depois inicializa/verifica o schema do banco. Não é necessário executar a migração manual abaixo para esse fluxo. Se as credenciais estiverem ausentes, o banco estiver inacessível ou o histórico de migrações não conferir, o novo deploy falha com uma mensagem sem segredos. O deploy anterior permanece disponível.
 
 Crie um banco no painel do Turso e obtenha sua URL e um token de banco com permissão de leitura/escrita. Use um banco dedicado ao Élan.
 
@@ -30,7 +42,7 @@ turso db tokens create elan-modeler
 
 Confira o motor do banco criado e copie a URL retornada pelo painel/CLI. [SDKs oficiais](https://docs.turso.tech/sdk/ts/reference), [quickstart](https://docs.turso.tech/sdk/ts/quickstart), [criação de bancos](https://docs.turso.tech/cli/db/create).
 
-## 2. Inicializar o schema uma vez
+## 2. Migração manual — alternativa e desenvolvimento local
 
 Na raiz do repositório, use Node.js **22.18 ou superior**:
 
@@ -55,7 +67,7 @@ Execute:
 npm run db:migrate
 ```
 
-O comando aplica `db/migrations/001_initial.sql`, registra o checksum e pode ser repetido. O build não acessa nem modifica o banco. Migrações novas devem ser arquivos novos; não edite uma migração já aplicada.
+O comando aplica `db/migrations/001_initial.sql`, registra o checksum e pode ser repetido. `npm run build` continua sem acesso ao banco. `npm run build:vercel` inicializa/verifica o banco somente quando `VERCEL_ENV=production`; builds locais, CI e previews não executam migrações. Migrações novas devem ser arquivos novos; não edite uma migração já aplicada. As migrações atuais apenas criam tabelas e índices e não apagam modelos. Mudanças futuras destrutivas precisam de revisão e planejamento próprios.
 
 Tabelas criadas: `elan_models` e `elan_schema_migrations`. O banco guarda o projeto como JSON, com metadados e revisão para detectar conflitos.
 
@@ -67,7 +79,7 @@ No painel da Vercel, escolha **Add New → Project**, importe `kiltonfernandes/e
 | ---------------- | ------------------------------------ |
 | Root Directory   | Raiz do repositório (`.`)            |
 | Framework Preset | Vite                                 |
-| Build Command    | `npm run build`                      |
+| Build Command    | `npm run build:vercel`               |
 | Output Directory | `dist`                               |
 | Install Command  | `npm ci --ignore-scripts`            |
 | Node.js          | 22.x, ou versão posterior compatível |
@@ -84,7 +96,7 @@ Em **Settings → Environment Variables**, adicione:
 | `TURSO_AUTH_TOKEN`      | Sim para banco remoto                      | Functions e comando de migração local. |
 | `TURSO_DATABASE_DRIVER` | Apenas para URL HTTPS ou escolha explícita | `turso` ou `libsql`.                   |
 
-Use os mesmos valores do banco inicializado. Se habilitar Preview, configure as variáveis nesse ambiente também; ele pode usar um banco separado. Não coloque credenciais em `vercel.json`, no código, em variáveis `VITE_*` ou no GitHub.
+Use os valores adicionados pela integração ou configure os do banco escolhido. Se habilitar Preview, ele pode usar um banco separado; inicialize-o manualmente, pois previews não fazem migrações automáticas. Não coloque credenciais em `vercel.json`, no código, em variáveis `VITE_*` ou no GitHub. O workflow `.github/workflows/verify.yml` verifica testes, build e Functions sem acessar o Turso remoto e sem exigir secrets do banco no GitHub.
 
 Clique em **Deploy**. Ao alterar variáveis depois, faça um novo deploy para aplicá-las. [Variáveis de ambiente](https://vercel.com/docs/environment-variables).
 

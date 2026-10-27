@@ -6,7 +6,7 @@ Um modelador BPMN em português brasileiro e inglês, com nome francês: **élan
 
 ## Executar
 
-Para publicar na web, siga o [guia de deploy manual na Vercel com Turso](docs/deploy-vercel-turso.md). A configuração está pronta no repositório; você cria o banco, executa a migração e importa o projeto no painel da Vercel.
+Para publicar na web, siga o [guia de deploy na Vercel com Turso](docs/deploy-vercel-turso.md). Conecte o Turso pelo Marketplace ao projeto, sem prefixo personalizado. O comando configurado `npm run build:vercel` compila o app e inicializa/verifica as tabelas automaticamente em produção. Builds locais e previews não executam migrações. O GitHub Actions verifica testes, build e Functions sem exigir credenciais do Turso no GitHub.
 
 Use Node.js **22.18 ou superior** e npm.
 

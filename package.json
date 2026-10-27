@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && npm run typecheck:server && vite build",
+    "build:vercel": "npm run build && node scripts/prepare-deploy.ts",
     "typecheck:server": "tsc -p tsconfig.server.json",
     "check:server-build": "tsc -p tsconfig.server.json --noEmit false --outDir work/server-build && node scripts/check-functions.mjs",
     "dev:api": "node --env-file-if-exists=.env.local scripts/dev-api.ts",

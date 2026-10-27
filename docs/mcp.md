@@ -4,7 +4,7 @@ O Élan oferece um servidor MCP remoto no mesmo deploy do editor. Não precisa h
 
 ## Configuração rápida no ChatGPT
 
-1. Faça o deploy ou redeploy do repositório na Vercel seguindo [Vercel + Turso](deploy-vercel-turso.md). Inicialize o banco com `npm run db:migrate` se ainda não fez isso. Esta mudança não exige nova migração.
+1. Faça o deploy ou redeploy do repositório na Vercel seguindo [Vercel + Turso](deploy-vercel-turso.md). Com a integração conectada, `npm run build:vercel` inicializa/verifica o banco automaticamente em produção. A alternativa manual é `npm run db:migrate`.
 2. Abra o **endereço público HTTPS** do Élan e clique em **Conectar IA**.
 3. Clique em **Testar servidor MCP**. O resultado esperado é **12 ferramentas disponíveis · Turso conectado**. Esse botão testa o servidor, não conecta uma conta externa.
 4. Na aba ChatGPT, copie o endereço. Ele será `https://SEU-DOMINIO/mcp`.

@@ -1,6 +1,6 @@
 # Élan Modeler
 
-The web app is prepared for manual deployment to Vercel with Turso storage. See the [deployment guide](docs/deploy-vercel-turso.md) and [HTTP API](docs/backend-api.md). Cloud storage is an intentionally public workspace without sign-in; database credentials remain on the server. The Cloud panel saves/opens projects manually and uses optimistic revisions to prevent lost updates. Local autosave continues. Set the server environment variables and run `npm run db:migrate` before deploying.
+The web app is prepared for deployment to Vercel with Turso storage. See the [deployment guide](docs/deploy-vercel-turso.md) and [HTTP API](docs/backend-api.md). Cloud storage is an intentionally public workspace without sign-in; database credentials remain on the server. The Cloud panel saves/opens projects manually and uses optimistic revisions to prevent lost updates. Local autosave continues. Connect Turso through Vercel Marketplace without a custom prefix. The configured `npm run build:vercel` initializes/checks the database only during production builds; local and preview builds never run migrations. GitHub Actions checks tests, builds and compiled Functions without remote database secrets.
 
 An independent BPMN modeling application with Brazilian Portuguese and English interfaces. **Élan** is a French word for forward momentum. Not affiliated with Bizagi.
 
