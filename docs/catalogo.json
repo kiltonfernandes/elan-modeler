@@ -1,0 +1,928 @@
+{
+  "start": [
+    {
+      "id": "StartEvent_",
+      "type": "bpmn:StartEvent",
+      "pt": "Sem gatilho",
+      "en": "None start",
+      "icon": "bpmn-icon-start-event-none"
+    },
+    {
+      "id": "StartEvent_Timer",
+      "type": "bpmn:StartEvent",
+      "pt": "Temporizador",
+      "en": "Timer start",
+      "icon": "bpmn-icon-start-event-timer",
+      "event": "bpmn:TimerEventDefinition"
+    },
+    {
+      "id": "StartEvent_Message",
+      "type": "bpmn:StartEvent",
+      "pt": "Mensagem",
+      "en": "Message start",
+      "icon": "bpmn-icon-start-event-message",
+      "event": "bpmn:MessageEventDefinition"
+    },
+    {
+      "id": "StartEvent_Signal",
+      "type": "bpmn:StartEvent",
+      "pt": "Sinal",
+      "en": "Signal start",
+      "icon": "bpmn-icon-start-event-signal",
+      "event": "bpmn:SignalEventDefinition"
+    },
+    {
+      "id": "StartEvent_Conditional",
+      "type": "bpmn:StartEvent",
+      "pt": "Condicional",
+      "en": "Conditional start",
+      "icon": "bpmn-icon-start-event-conditional",
+      "event": "bpmn:ConditionalEventDefinition"
+    },
+    {
+      "id": "StartEvent_ParallelMultiple",
+      "type": "bpmn:StartEvent",
+      "pt": "Múltiplo paralelo",
+      "en": "Parallel multiple start",
+      "icon": "bpmn-icon-start-event-parallelmultiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "parallelMultiple": true
+      }
+    },
+    {
+      "id": "StartEvent_Multiple",
+      "type": "bpmn:StartEvent",
+      "pt": "Múltiplo",
+      "en": "Multiple start",
+      "icon": "bpmn-icon-start-event-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ]
+    },
+    {
+      "id": "StartEvent_Error",
+      "type": "bpmn:StartEvent",
+      "pt": "Erro · subprocesso de evento",
+      "en": "Error start · event subprocess",
+      "icon": "bpmn-icon-start-event-error",
+      "event": "bpmn:ErrorEventDefinition",
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "StartEvent_Escalation",
+      "type": "bpmn:StartEvent",
+      "pt": "Escalação · subprocesso de evento",
+      "en": "Escalation start · event subprocess",
+      "icon": "bpmn-icon-start-event-escalation",
+      "event": "bpmn:EscalationEventDefinition",
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "StartEvent_Compensate",
+      "type": "bpmn:StartEvent",
+      "pt": "Compensação · subprocesso de evento",
+      "en": "Compensate start · event subprocess",
+      "icon": "bpmn-icon-start-event-compensation",
+      "event": "bpmn:CompensateEventDefinition",
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Timer",
+      "type": "bpmn:StartEvent",
+      "pt": "Temporizador · não interruptivo",
+      "en": "Timer start · non-interrupting",
+      "icon": "bpmn-icon-start-event-timer",
+      "event": "bpmn:TimerEventDefinition",
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Message",
+      "type": "bpmn:StartEvent",
+      "pt": "Mensagem · não interruptivo",
+      "en": "Message start · non-interrupting",
+      "icon": "bpmn-icon-start-event-message",
+      "event": "bpmn:MessageEventDefinition",
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Signal",
+      "type": "bpmn:StartEvent",
+      "pt": "Sinal · não interruptivo",
+      "en": "Signal start · non-interrupting",
+      "icon": "bpmn-icon-start-event-signal",
+      "event": "bpmn:SignalEventDefinition",
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Conditional",
+      "type": "bpmn:StartEvent",
+      "pt": "Condicional · não interruptivo",
+      "en": "Conditional start · non-interrupting",
+      "icon": "bpmn-icon-start-event-conditional",
+      "event": "bpmn:ConditionalEventDefinition",
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Escalation",
+      "type": "bpmn:StartEvent",
+      "pt": "Escalação · não interruptivo",
+      "en": "Escalation start · non-interrupting",
+      "icon": "bpmn-icon-start-event-escalation",
+      "event": "bpmn:EscalationEventDefinition",
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_Multiple",
+      "type": "bpmn:StartEvent",
+      "pt": "Múltiplo · não interruptivo",
+      "en": "Multiple start · non-interrupting",
+      "icon": "bpmn-icon-start-event-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "isInterrupting": false
+      },
+      "hint": "event-subprocess"
+    },
+    {
+      "id": "nonInterruptingStart_ParallelMultiple",
+      "type": "bpmn:StartEvent",
+      "pt": "Múltiplo paralelo · não interruptivo",
+      "en": "Parallel multiple start · non-interrupting",
+      "icon": "bpmn-icon-start-event-parallelmultiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "isInterrupting": false,
+        "parallelMultiple": true
+      },
+      "hint": "event-subprocess"
+    }
+  ],
+  "task": [
+    {
+      "id": "Task",
+      "type": "bpmn:Task",
+      "pt": "Tarefa sem tipo",
+      "en": "None task",
+      "icon": "bpmn-icon-task"
+    },
+    {
+      "id": "UserTask",
+      "type": "bpmn:UserTask",
+      "pt": "Tarefa de usuário",
+      "en": "User task",
+      "icon": "bpmn-icon-user-task"
+    },
+    {
+      "id": "ServiceTask",
+      "type": "bpmn:ServiceTask",
+      "pt": "Tarefa de serviço",
+      "en": "Service task",
+      "icon": "bpmn-icon-service-task"
+    },
+    {
+      "id": "ReceiveTask",
+      "type": "bpmn:ReceiveTask",
+      "pt": "Receber mensagem",
+      "en": "Receive task",
+      "icon": "bpmn-icon-receive-task"
+    },
+    {
+      "id": "SendTask",
+      "type": "bpmn:SendTask",
+      "pt": "Enviar mensagem / e-mail",
+      "en": "Send task / email",
+      "icon": "bpmn-icon-send-task"
+    },
+    {
+      "id": "ScriptTask",
+      "type": "bpmn:ScriptTask",
+      "pt": "Tarefa de script",
+      "en": "Script task",
+      "icon": "bpmn-icon-script-task"
+    },
+    {
+      "id": "ManualTask",
+      "type": "bpmn:ManualTask",
+      "pt": "Tarefa manual",
+      "en": "Manual task",
+      "icon": "bpmn-icon-manual-task"
+    },
+    {
+      "id": "BusinessRuleTask",
+      "type": "bpmn:BusinessRuleTask",
+      "pt": "Regra de negócio",
+      "en": "Business rule task",
+      "icon": "bpmn-icon-business-rule-task"
+    }
+  ],
+  "subprocess": [
+    {
+      "id": "call",
+      "type": "bpmn:CallActivity",
+      "pt": "Processo reutilizável (chamada)",
+      "en": "Reusable process (call activity)",
+      "icon": "bpmn-icon-call-activity"
+    },
+    {
+      "id": "subCollapsed",
+      "type": "bpmn:SubProcess",
+      "pt": "Subprocesso recolhido",
+      "en": "Collapsed subprocess",
+      "icon": "bpmn-icon-subprocess-collapsed",
+      "expanded": false
+    },
+    {
+      "id": "subExpanded",
+      "type": "bpmn:SubProcess",
+      "pt": "Subprocesso expandido",
+      "en": "Expanded subprocess",
+      "icon": "bpmn-icon-subprocess-expanded",
+      "expanded": true
+    },
+    {
+      "id": "eventSub",
+      "type": "bpmn:SubProcess",
+      "pt": "Subprocesso de evento",
+      "en": "Event subprocess",
+      "icon": "bpmn-icon-event-subprocess-expanded",
+      "props": {
+        "triggeredByEvent": true
+      },
+      "expanded": true
+    },
+    {
+      "id": "Transaction",
+      "type": "bpmn:Transaction",
+      "pt": "Transação",
+      "en": "Transaction",
+      "icon": "bpmn-icon-transaction"
+    },
+    {
+      "id": "AdHocSubProcess",
+      "type": "bpmn:AdHocSubProcess",
+      "pt": "Subprocesso ad hoc",
+      "en": "Ad-hoc subprocess",
+      "icon": "bpmn-icon-ad-hoc-marker"
+    }
+  ],
+  "gateway": [
+    {
+      "id": "ParallelGateway",
+      "type": "bpmn:ParallelGateway",
+      "pt": "Gateway paralelo",
+      "en": "Parallel gateway",
+      "icon": "bpmn-icon-gateway-parallel"
+    },
+    {
+      "id": "ExclusiveGateway",
+      "type": "bpmn:ExclusiveGateway",
+      "pt": "Gateway exclusivo",
+      "en": "Exclusive gateway",
+      "icon": "bpmn-icon-gateway-xor"
+    },
+    {
+      "id": "InclusiveGateway",
+      "type": "bpmn:InclusiveGateway",
+      "pt": "Gateway inclusivo",
+      "en": "Inclusive gateway",
+      "icon": "bpmn-icon-gateway-or"
+    },
+    {
+      "id": "eventGateway",
+      "type": "bpmn:EventBasedGateway",
+      "pt": "Baseado em eventos",
+      "en": "Event-based gateway",
+      "icon": "bpmn-icon-gateway-eventbased",
+      "props": {
+        "eventGatewayType": "Exclusive",
+        "instantiate": false
+      }
+    },
+    {
+      "id": "exclusiveEventGateway",
+      "type": "bpmn:EventBasedGateway",
+      "pt": "Exclusivo baseado em eventos (início)",
+      "en": "Exclusive event-based gateway (instantiate)",
+      "icon": "bpmn-icon-gateway-eventbased",
+      "props": {
+        "eventGatewayType": "Exclusive",
+        "instantiate": true
+      }
+    },
+    {
+      "id": "parallelEventGateway",
+      "type": "bpmn:EventBasedGateway",
+      "pt": "Paralelo baseado em eventos (início)",
+      "en": "Parallel event-based gateway (instantiate)",
+      "icon": "bpmn-icon-gateway-parallel-eventbased",
+      "props": {
+        "eventGatewayType": "Parallel",
+        "instantiate": true
+      }
+    },
+    {
+      "id": "ComplexGateway",
+      "type": "bpmn:ComplexGateway",
+      "pt": "Gateway complexo",
+      "en": "Complex gateway",
+      "icon": "bpmn-icon-gateway-complex"
+    }
+  ],
+  "intermediate": [
+    {
+      "id": "IntermediateThrowEvent_",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Sem gatilho",
+      "en": "None intermediate",
+      "icon": "bpmn-icon-intermediate-event-none"
+    },
+    {
+      "id": "IntermediateCatchEvent_Timer",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Temporizador (captura)",
+      "en": "Timer catch",
+      "icon": "bpmn-icon-intermediate-event-timer",
+      "event": "bpmn:TimerEventDefinition"
+    },
+    {
+      "id": "IntermediateCatchEvent_Message",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Mensagem (captura)",
+      "en": "Message catch",
+      "icon": "bpmn-icon-intermediate-event-message",
+      "event": "bpmn:MessageEventDefinition"
+    },
+    {
+      "id": "IntermediateThrowEvent_Message",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Mensagem (lançamento)",
+      "en": "Message throw",
+      "icon": "bpmn-icon-intermediate-event-message",
+      "event": "bpmn:MessageEventDefinition"
+    },
+    {
+      "id": "IntermediateCatchEvent_Signal",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Sinal (captura)",
+      "en": "Signal catch",
+      "icon": "bpmn-icon-intermediate-event-signal",
+      "event": "bpmn:SignalEventDefinition"
+    },
+    {
+      "id": "IntermediateThrowEvent_Signal",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Sinal (lançamento)",
+      "en": "Signal throw",
+      "icon": "bpmn-icon-intermediate-event-signal",
+      "event": "bpmn:SignalEventDefinition"
+    },
+    {
+      "id": "IntermediateCatchEvent_Link",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Link (captura)",
+      "en": "Link catch",
+      "icon": "bpmn-icon-intermediate-event-link",
+      "event": "bpmn:LinkEventDefinition"
+    },
+    {
+      "id": "IntermediateThrowEvent_Link",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Link (lançamento)",
+      "en": "Link throw",
+      "icon": "bpmn-icon-intermediate-event-link",
+      "event": "bpmn:LinkEventDefinition"
+    },
+    {
+      "id": "IntermediateThrowEvent_Compensate",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Compensação",
+      "en": "Compensate throw",
+      "icon": "bpmn-icon-intermediate-event-compensation",
+      "event": "bpmn:CompensateEventDefinition"
+    },
+    {
+      "id": "IntermediateThrowEvent_Escalation",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Escalação",
+      "en": "Escalation throw",
+      "icon": "bpmn-icon-intermediate-event-escalation",
+      "event": "bpmn:EscalationEventDefinition"
+    },
+    {
+      "id": "IntermediateCatchEvent_Conditional",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Condicional",
+      "en": "Conditional catch",
+      "icon": "bpmn-icon-intermediate-event-conditional",
+      "event": "bpmn:ConditionalEventDefinition"
+    },
+    {
+      "id": "IntermediateCatchEvent_ParallelMultiple",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Múltiplo paralelo",
+      "en": "Parallel multiple catch",
+      "icon": "bpmn-icon-intermediate-event-parallelmultiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "parallelMultiple": true
+      }
+    },
+    {
+      "id": "IntermediateCatchEvent_Multiple",
+      "type": "bpmn:IntermediateCatchEvent",
+      "pt": "Múltiplo (captura)",
+      "en": "Multiple catch",
+      "icon": "bpmn-icon-intermediate-event-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ]
+    },
+    {
+      "id": "IntermediateThrowEvent_Multiple",
+      "type": "bpmn:IntermediateThrowEvent",
+      "pt": "Múltiplo (lançamento)",
+      "en": "Multiple throw",
+      "icon": "bpmn-icon-intermediate-event-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ]
+    }
+  ],
+  "end": [
+    {
+      "id": "EndEvent_",
+      "type": "bpmn:EndEvent",
+      "pt": "Sem resultado",
+      "en": "None end",
+      "icon": "bpmn-icon-end-event-none"
+    },
+    {
+      "id": "EndEvent_Terminate",
+      "type": "bpmn:EndEvent",
+      "pt": "Término de todas as instâncias",
+      "en": "Terminate end",
+      "icon": "bpmn-icon-end-event-terminate",
+      "event": "bpmn:TerminateEventDefinition"
+    },
+    {
+      "id": "EndEvent_Message",
+      "type": "bpmn:EndEvent",
+      "pt": "Mensagem",
+      "en": "Message end",
+      "icon": "bpmn-icon-end-event-message",
+      "event": "bpmn:MessageEventDefinition"
+    },
+    {
+      "id": "EndEvent_Signal",
+      "type": "bpmn:EndEvent",
+      "pt": "Sinal",
+      "en": "Signal end",
+      "icon": "bpmn-icon-end-event-signal",
+      "event": "bpmn:SignalEventDefinition"
+    },
+    {
+      "id": "EndEvent_Compensate",
+      "type": "bpmn:EndEvent",
+      "pt": "Compensação",
+      "en": "Compensate end",
+      "icon": "bpmn-icon-end-event-compensation",
+      "event": "bpmn:CompensateEventDefinition"
+    },
+    {
+      "id": "EndEvent_Escalation",
+      "type": "bpmn:EndEvent",
+      "pt": "Escalação",
+      "en": "Escalation end",
+      "icon": "bpmn-icon-end-event-escalation",
+      "event": "bpmn:EscalationEventDefinition"
+    },
+    {
+      "id": "EndEvent_Error",
+      "type": "bpmn:EndEvent",
+      "pt": "Erro",
+      "en": "Error end",
+      "icon": "bpmn-icon-end-event-error",
+      "event": "bpmn:ErrorEventDefinition"
+    },
+    {
+      "id": "EndEvent_Cancel",
+      "type": "bpmn:EndEvent",
+      "pt": "Cancelamento de transação",
+      "en": "Cancel end",
+      "icon": "bpmn-icon-end-event-cancel",
+      "event": "bpmn:CancelEventDefinition"
+    },
+    {
+      "id": "EndEvent_Multiple",
+      "type": "bpmn:EndEvent",
+      "pt": "Múltiplo",
+      "en": "Multiple end",
+      "icon": "bpmn-icon-end-event-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ]
+    }
+  ],
+  "boundary": [
+    {
+      "id": "BoundaryEvent_Timer",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Temporizador · interruptivo",
+      "en": "Timer boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-timer",
+      "event": "bpmn:TimerEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Message",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Mensagem · interruptivo",
+      "en": "Message boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-message",
+      "event": "bpmn:MessageEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Signal",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Sinal · interruptivo",
+      "en": "Signal boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-signal",
+      "event": "bpmn:SignalEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Conditional",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Condicional · interruptivo",
+      "en": "Conditional boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-conditional",
+      "event": "bpmn:ConditionalEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Error",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Erro · interruptivo",
+      "en": "Error boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-error",
+      "event": "bpmn:ErrorEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Escalation",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Escalação · interruptivo",
+      "en": "Escalation boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-escalation",
+      "event": "bpmn:EscalationEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Compensate",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Compensação · interruptivo",
+      "en": "Compensate boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-compensation",
+      "event": "bpmn:CompensateEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "BoundaryEvent_Cancel",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Cancelamento · interruptivo",
+      "en": "Cancel boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-cancel",
+      "event": "bpmn:CancelEventDefinition",
+      "props": {
+        "cancelActivity": true
+      }
+    },
+    {
+      "id": "nonInterrupting_Timer",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Temporizador · não interruptivo",
+      "en": "Timer boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-timer",
+      "event": "bpmn:TimerEventDefinition",
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "nonInterrupting_Message",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Mensagem · não interruptivo",
+      "en": "Message boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-message",
+      "event": "bpmn:MessageEventDefinition",
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "nonInterrupting_Signal",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Sinal · não interruptivo",
+      "en": "Signal boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-signal",
+      "event": "bpmn:SignalEventDefinition",
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "nonInterrupting_Conditional",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Condicional · não interruptivo",
+      "en": "Conditional boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-conditional",
+      "event": "bpmn:ConditionalEventDefinition",
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "nonInterrupting_Escalation",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Escalação · não interruptivo",
+      "en": "Escalation boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-escalation",
+      "event": "bpmn:EscalationEventDefinition",
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "BoundaryEvent_Multiple",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Múltiplo · interruptivo",
+      "en": "Multiple boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ]
+    },
+    {
+      "id": "BoundaryEvent_ParallelMultiple",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Múltiplo paralelo · interruptivo",
+      "en": "Parallel multiple boundary · interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-parallelmultiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "parallelMultiple": true
+      }
+    },
+    {
+      "id": "nonInterrupting_Multiple",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Múltiplo · não interruptivo",
+      "en": "Multiple boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-multiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "cancelActivity": false
+      }
+    },
+    {
+      "id": "nonInterrupting_ParallelMultiple",
+      "type": "bpmn:BoundaryEvent",
+      "pt": "Múltiplo paralelo · não interruptivo",
+      "en": "Parallel multiple boundary · non-interrupting",
+      "icon": "bpmn-icon-intermediate-event-catch-parallelmultiple",
+      "events": [
+        "Message",
+        "Signal"
+      ],
+      "props": {
+        "parallelMultiple": true,
+        "cancelActivity": false
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "sequence",
+      "type": "bpmn:SequenceFlow",
+      "pt": "Fluxo de sequência",
+      "en": "Sequence flow",
+      "icon": "bpmn-icon-connection",
+      "connection": "bpmn:SequenceFlow"
+    },
+    {
+      "id": "conditional",
+      "type": "bpmn:SequenceFlow",
+      "pt": "Fluxo condicional",
+      "en": "Conditional flow",
+      "icon": "bpmn-icon-conditional-flow",
+      "connection": "conditional"
+    },
+    {
+      "id": "default",
+      "type": "bpmn:SequenceFlow",
+      "pt": "Fluxo padrão",
+      "en": "Default flow",
+      "icon": "bpmn-icon-default-flow",
+      "connection": "default"
+    },
+    {
+      "id": "messageFlow",
+      "type": "bpmn:MessageFlow",
+      "pt": "Fluxo de mensagem",
+      "en": "Message flow",
+      "icon": "bpmn-icon-connection-multi",
+      "connection": "bpmn:MessageFlow"
+    },
+    {
+      "id": "association",
+      "type": "bpmn:Association",
+      "pt": "Associação sem direção",
+      "en": "Undirected association",
+      "icon": "bpmn-icon-association",
+      "connection": "bpmn:Association"
+    },
+    {
+      "id": "associationOne",
+      "type": "bpmn:Association",
+      "pt": "Associação em uma direção",
+      "en": "Directed association",
+      "icon": "bpmn-icon-association",
+      "connection": "associationOne"
+    },
+    {
+      "id": "associationBoth",
+      "type": "bpmn:Association",
+      "pt": "Associação bidirecional",
+      "en": "Bidirectional association",
+      "icon": "bpmn-icon-association",
+      "connection": "associationBoth"
+    },
+    {
+      "id": "dataInputAssociation",
+      "type": "bpmn:DataInputAssociation",
+      "pt": "Associação de entrada de dados",
+      "en": "Data input association",
+      "icon": "bpmn-icon-data-input",
+      "connection": "bpmn:DataInputAssociation"
+    },
+    {
+      "id": "dataOutputAssociation",
+      "type": "bpmn:DataOutputAssociation",
+      "pt": "Associação de saída de dados",
+      "en": "Data output association",
+      "icon": "bpmn-icon-data-output",
+      "connection": "bpmn:DataOutputAssociation"
+    },
+    {
+      "id": "conversationLink",
+      "type": "bpmn:ConversationLink",
+      "pt": "Vínculo de conversação",
+      "en": "Conversation link",
+      "icon": "bpmn-icon-connection-multi",
+      "connection": "bpmn:ConversationLink"
+    }
+  ],
+  "data": [
+    {
+      "id": "DataObjectReference",
+      "type": "bpmn:DataObjectReference",
+      "pt": "Objeto de dados",
+      "en": "Data object",
+      "icon": "bpmn-icon-data-object"
+    },
+    {
+      "id": "dataCollection",
+      "type": "bpmn:DataObjectReference",
+      "pt": "Coleção de dados",
+      "en": "Data collection",
+      "icon": "bpmn-icon-data-object",
+      "props": {
+        "collection": true
+      }
+    },
+    {
+      "id": "DataStoreReference",
+      "type": "bpmn:DataStoreReference",
+      "pt": "Armazenamento de dados",
+      "en": "Data store",
+      "icon": "bpmn-icon-data-store"
+    },
+    {
+      "id": "DataInput",
+      "type": "bpmn:DataInput",
+      "pt": "Entrada de dados",
+      "en": "Data input",
+      "icon": "bpmn-icon-data-input"
+    },
+    {
+      "id": "DataOutput",
+      "type": "bpmn:DataOutput",
+      "pt": "Saída de dados",
+      "en": "Data output",
+      "icon": "bpmn-icon-data-output"
+    }
+  ],
+  "conversation": [
+    {
+      "id": "Conversation",
+      "type": "bpmn:Conversation",
+      "pt": "Conversação",
+      "en": "Conversation",
+      "icon": "bpmn-icon-gateway-none"
+    },
+    {
+      "id": "SubConversation",
+      "type": "bpmn:SubConversation",
+      "pt": "Subconversação",
+      "en": "Sub-conversation",
+      "icon": "bpmn-icon-gateway-none"
+    },
+    {
+      "id": "CallConversation",
+      "type": "bpmn:CallConversation",
+      "pt": "Chamada de conversação",
+      "en": "Call conversation",
+      "icon": "bpmn-icon-gateway-none"
+    }
+  ],
+  "artifact": [
+    {
+      "id": "milestone",
+      "type": "bpmn:Group",
+      "pt": "Marco / fase (extensão Élan)",
+      "en": "Milestone / phase (Élan extension)",
+      "icon": "bpmn-icon-lane",
+      "props": {
+        "elanKind": "milestone"
+      }
+    },
+    {
+      "id": "Group",
+      "type": "bpmn:Group",
+      "pt": "Grupo",
+      "en": "Group",
+      "icon": "bpmn-icon-group"
+    },
+    {
+      "id": "TextAnnotation",
+      "type": "bpmn:TextAnnotation",
+      "pt": "Anotação de texto",
+      "en": "Text annotation",
+      "icon": "bpmn-icon-text-annotation"
+    }
+  ]
+}

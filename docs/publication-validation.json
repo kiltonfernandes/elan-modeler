@@ -1,0 +1,27 @@
+{
+  "pdf": {
+    "pages": 2,
+    "text_contains_title": true,
+    "rendered_pages": 2
+  },
+  "docx": {
+    "paragraphs": 62,
+    "inline_diagrams": 1,
+    "title": "Recrutamento e seleção"
+  },
+  "xlsx": {
+    "sheets": [
+      "Documentação"
+    ],
+    "rows": 20,
+    "columns": 5,
+    "header": [
+      "Diagrama",
+      "Identificador",
+      "Nome",
+      "Tipo",
+      "Descrição"
+    ]
+  },
+  "scope": "Production generators with a real recruitment diagram; PDF raster inspection and DOCX/XLSX structural readers. Not a Microsoft Office visual compatibility certification."
+}

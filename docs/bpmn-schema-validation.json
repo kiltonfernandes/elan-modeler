@@ -1,0 +1,26 @@
+[
+  {
+    "file": "conversacao.bpmn",
+    "schema": "OMG BPMN 2.0.2",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "file": "coreografia.bpmn",
+    "schema": "OMG BPMN 2.0.2",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "file": "recruitment.bpmn",
+    "schema": "OMG BPMN 2.0.2",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "file": "recrutamento.bpmn",
+    "schema": "OMG BPMN 2.0.2",
+    "valid": true,
+    "errors": []
+  }
+]
