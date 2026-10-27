@@ -24,3 +24,7 @@ Uma revisão incorreta nunca força atualização. O servidor altera o documento
 O payload de projeto é limitado a 3 MiB; o envelope HTTP tem uma pequena margem adicional. Segredos, mensagens internas do SDK e SQL não entram nas respostas. As credenciais existem somente no ambiente do servidor. Os drivers remotos usam transporte HTTP/fetch; o cliente nativo libSQL é reservado ao banco local de desenvolvimento/teste.
 
 Veja [deploy-vercel-turso.md](deploy-vercel-turso.md) para setup manual, migrações e limitações.
+
+## MCP
+
+`GET /api/mcp-info` retorna metadados do MCP sem segredos. O endpoint `/mcp` (reescrito para `/api/mcp` na Vercel) usa JSON-RPC com o SDK oficial e transporte Streamable HTTP. `/mcp/notion` é uma variante opcional com autenticação por cabeçalho. As ferramentas compartilham o mesmo armazenamento e as revisões da API REST. Veja [mcp.md](mcp.md) para protocolo, ferramentas, autenticação e configuração de clientes.

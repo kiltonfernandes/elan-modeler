@@ -12,7 +12,9 @@ export type ApiRequest = IncomingMessage & {
 };
 type Route = "health" | "status" | "models" | "model" | "not-found";
 const BODY_LIMIT = MAX_CLOUD_BYTES + 1024;
-async function jsonBody(req: ApiRequest): Promise<Record<string, unknown>> {
+export async function jsonBody(
+  req: ApiRequest,
+): Promise<Record<string, unknown>> {
   if (!/^application\/json(?:;|$)/i.test(req.headers["content-type"] || ""))
     throw new ApiError(415, "json_required", "Use application/json.");
   if (Number(req.headers["content-length"] || 0) > BODY_LIMIT)

@@ -6,6 +6,8 @@ An independent BPMN modeling application with Brazilian Portuguese and English i
 
 Requires Node.js 22.18+.
 
+**Connect AI** in the web editor provides the MCP URL, a server check and setup instructions in both interface languages. After deploying, use `https://YOUR-DOMAIN/mcp` with **No authentication** in ChatGPT. Twelve MCP tools can read, create and update cloud-saved models with revision protection. Notion requires a supported plan, administrator permission and the optional header-auth endpoint `/mcp/notion`; set `ELAN_MCP_NOTION_TOKEN` only for that connection. The main workspace remains public. See the [MCP setup guide](docs/mcp.md). Local unsaved canvas edits are not exposed through MCP.
+
 ```bash
 npm ci
 npm run dev

@@ -22,10 +22,11 @@ export class ModelStore {
   constructor(db: Database) {
     this.db = db;
   }
-  async list(archived = false, offset = 0): Promise<CloudList> {
+  async list(archived = false, offset = 0, query = ""): Promise<CloudList> {
+    const pattern = "%" + query.replace(/[\\%_]/g, (c) => "\\" + c) + "%";
     const result = await this.db.execute({
-      sql: `SELECT ${columns} FROM elan_models WHERE archived_at IS ${archived ? "NOT " : ""}NULL ORDER BY updated_at DESC, id DESC LIMIT 51 OFFSET ?`,
-      args: [offset],
+      sql: `SELECT ${columns} FROM elan_models WHERE archived_at IS ${archived ? "NOT " : ""}NULL ${query ? "AND (name LIKE ? ESCAPE '\\' OR payload_json LIKE ? ESCAPE '\\')" : ""} ORDER BY updated_at DESC, id DESC LIMIT 51 OFFSET ?`,
+      args: query ? [pattern, pattern, offset] : [offset],
     });
     return {
       models: result.rows.slice(0, 50).map(summary),

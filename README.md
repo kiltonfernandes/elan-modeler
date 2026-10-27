@@ -74,6 +74,10 @@ O salvamento local continua automático. A versão web também oferece **Nuvem**
 
 **Exporte `.elan` para manter cópias de segurança.** O limite de armazenamento local depende do ambiente; o aplicativo mostra um aviso se o salvamento falhar. O histórico local mantém até 20 versões e não é incluído no arquivo `.elan` nem sincronizado com o banco. Na nuvem, o limite por projeto é 3 MiB; projetos maiores continuam utilizáveis localmente. Não há analytics ou dependência de fontes externas.
 
+## Conectar IA com MCP
+
+O botão **Conectar IA** fornece a URL do servidor e instruções para ChatGPT, Notion e outros clientes MCP. O endpoint público é **`https://SEU-DOMINIO/mcp`**, sem chave. Inclui 12 ferramentas para consultar, criar e editar os modelos salvos no Turso, com controle de revisão. O Notion tem uma rota opcional com autenticação por cabeçalho, exigida pelo cliente. Veja o [guia de configuração e uso](docs/mcp.md).
+
 ## Verificar
 
 ```bash

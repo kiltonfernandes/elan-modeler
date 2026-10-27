@@ -6,8 +6,12 @@
   "outputDirectory": "dist",
   "functions": { "api/**/*.ts": { "maxDuration": 30 } },
   "rewrites": [
+    { "source": "/mcp/notion", "destination": "/api/mcp?profile=notion" },
+    { "source": "/mcp/notion/", "destination": "/api/mcp?profile=notion" },
+    { "source": "/mcp", "destination": "/api/mcp" },
+    { "source": "/mcp/", "destination": "/api/mcp" },
     {
-      "source": "/((?!api(?:/|$)|assets(?:/|$)).*)",
+      "source": "/((?!api(?:/|$)|assets(?:/|$)|mcp(?:/|$)).*)",
       "destination": "/index.html"
     }
   ],

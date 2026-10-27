@@ -1,6 +1,6 @@
 # Deploy manual: Vercel + Turso
 
-O repositório está preparado para publicar o editor Vite e quatro Vercel Functions Node.js. O banco armazena o projeto Élan completo: documentos, BPMN XML, XML original de importação e comentários. Esta etapa não cria contas nem faz deploy automaticamente.
+O repositório está preparado para publicar o editor Vite e seis Vercel Functions Node.js, incluindo o servidor MCP. O banco armazena o projeto Élan completo: documentos, BPMN XML, XML original de importação e comentários. Esta etapa não cria contas nem faz deploy automaticamente.
 
 Por escolha do projeto, o workspace é **público, sem login ou chave no app**. Quem acessar o endereço pode listar, abrir, alterar e arquivar os modelos. `TURSO_AUTH_TOKEN` é uma credencial do banco, usada somente pelo servidor; não é uma chave exigida do usuário do editor.
 
@@ -95,6 +95,7 @@ Clique em **Deploy**. Ao alterar variáveis depois, faça um novo deploy para ap
 3. No editor, clique em **Nuvem → Salvar modelo atual**.
 4. Feche e reabra o painel; confira a revisão e use **Abrir**.
 5. Em outro navegador/dispositivo, abra o mesmo endereço e procure o modelo na lista.
+6. Clique em **Conectar IA → Testar servidor MCP**. Confira as 12 ferramentas e o estado do Turso. Copie a URL HTTPS `/mcp` para cadastrar no cliente de IA conforme o [guia MCP](mcp.md). Para o ChatGPT, não é necessária outra variável. A rota opcional do Notion usa `ELAN_MCP_NOTION_TOKEN` e exige redeploy após configurar o valor.
 
 Não basta o frontend abrir: o teste de `/api/status` e o salvamento confirmam a configuração do banco. Não é necessário inserir nenhuma chave no editor.
 
@@ -118,7 +119,7 @@ npm run dev:api
 npm run dev
 ```
 
-A API atende em `127.0.0.1:3001`; o Vite em `127.0.0.1:5173` encaminha `/api` para ela. Esse banco local não é usado na Vercel: em produção o backend exige um banco remoto. `npm run preview` serve apenas os arquivos estáticos compilados.
+A API atende em `127.0.0.1:3001`; o Vite em `127.0.0.1:5173` encaminha `/api` e `/mcp` para ela. Esse banco local não é usado na Vercel: em produção o backend exige um banco remoto. `npm run preview` serve apenas os arquivos estáticos compilados.
 
 ## Comportamento desta etapa
 

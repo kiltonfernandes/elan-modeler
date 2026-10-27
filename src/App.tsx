@@ -55,6 +55,8 @@ import {
   Cloud,
 } from "lucide-react";
 import CloudPanel from "./CloudPanel";
+import McpPanel from "./McpPanel";
+import { cloudApi } from "./cloud-api";
 import type { CloudModel, CloudSummary } from "../shared/cloud";
 import Modeler from "./HybridModeler";
 import { choreographyXML, conversationXML } from "./special-models";
@@ -312,6 +314,8 @@ export default function App() {
   const t = (k: Key) => strings[lang][k];
   const [project, setProject] = useState<Project>(loadInitial);
   const [cloudOpen, setCloudOpen] = useState(false);
+  const [mcpOpen, setMcpOpen] = useState(false);
+  const linkedModelOpened = useRef(false);
   const [cloudModel, setCloudModel] = useState<CloudSummary | null>(() => {
     try {
       const link = JSON.parse(
@@ -459,6 +463,42 @@ export default function App() {
     const p = await capture();
     return p.diagrams.find((d) => d.id === p.activeId)!.xml;
   };
+  async function openCloudModel(model: CloudModel) {
+    const previous = await capture();
+    const next = parseProject(JSON.stringify(model.project));
+    for (const diagram of next.diagrams) xmlDocument(diagram.xml);
+    try {
+      await openXML(next.diagrams.find((d) => d.id === next.activeId)!.xml);
+      storeSnapshot(
+        previous,
+        lang === "en"
+          ? "Before opening cloud model"
+          : "Antes de abrir modelo da nuvem",
+      );
+      recoveryNeeded.current = false;
+      persist(next);
+      setCloudModel(model);
+    } catch (error) {
+      await openXML(
+        previous.diagrams.find((d) => d.id === previous.activeId)!.xml,
+      );
+      throw error;
+    }
+  }
+  useEffect(() => {
+    if (!ready || linkedModelOpened.current || location.protocol === "file:")
+      return;
+    const id = new URLSearchParams(location.search).get("model");
+    if (
+      !id ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+        id,
+      )
+    )
+      return;
+    linkedModelOpened.current = true;
+    void act(async () => openCloudModel(await cloudApi.get(id)));
+  }, [ready]);
   const act = async (fn: () => unknown | Promise<unknown>) => {
     if (busyRef.current) return;
     busyRef.current = true;
@@ -1157,6 +1197,15 @@ export default function App() {
           </span>
         </div>
         <div className="header-right">
+          {location.protocol !== "file:" && (
+            <button
+              className="cloud-header-button"
+              onClick={() => setMcpOpen(true)}
+            >
+              <Network size={17} />
+              <span>{lang === "en" ? "Connect AI" : "Conectar IA"}</span>
+            </button>
+          )}
           {location.protocol !== "file:" && (
             <button
               className="cloud-header-button"
@@ -2382,29 +2431,16 @@ export default function App() {
           capture={capture}
           onSaved={setCloudModel}
           onClose={() => setCloudOpen(false)}
-          onOpen={async (model: CloudModel) => {
-            const previous = await capture();
-            const next = parseProject(JSON.stringify(model.project));
-            for (const diagram of next.diagrams) xmlDocument(diagram.xml);
-            try {
-              await openXML(
-                next.diagrams.find((d) => d.id === next.activeId)!.xml,
-              );
-              storeSnapshot(
-                previous,
-                lang === "en"
-                  ? "Before opening cloud model"
-                  : "Antes de abrir modelo da nuvem",
-              );
-              recoveryNeeded.current = false;
-              persist(next);
-              setCloudModel(model);
-            } catch (error) {
-              await openXML(
-                previous.diagrams.find((d) => d.id === previous.activeId)!.xml,
-              );
-              throw error;
-            }
+          onOpen={openCloudModel}
+        />
+      )}
+      {mcpOpen && (
+        <McpPanel
+          lang={lang}
+          onClose={() => setMcpOpen(false)}
+          onCloud={() => {
+            setMcpOpen(false);
+            setCloudOpen(true);
           }}
         />
       )}

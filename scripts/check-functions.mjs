@@ -4,6 +4,8 @@ import health from "../work/server-build/api/health.js";
 import status from "../work/server-build/api/status.js";
 import models from "../work/server-build/api/models/index.js";
 import model from "../work/server-build/api/models/[id].js";
+import mcp from "../work/server-build/api/mcp.js";
+import mcpInfo from "../work/server-build/api/mcp-info.js";
 
 // This probe never connects to a configured database.
 delete process.env.TURSO_DATABASE_URL;
@@ -14,6 +16,8 @@ const handlers = {
   "/api/status": status,
   "/api/models": models,
   "/api/models/invalid": model,
+  "/mcp": mcp,
+  "/api/mcp-info": mcpInfo,
 };
 const server = createServer((req, res) => {
   void handlers[req.url](req, res);
@@ -28,7 +32,29 @@ try {
   );
   assert.equal((await fetch(base + "/api/models")).status, 503);
   assert.equal((await fetch(base + "/api/models/invalid")).status, 400);
-  console.log("Compiled Node ESM API entrypoints: 4 checks passed.");
+  const info = await (await fetch(base + "/api/mcp-info")).json();
+  assert.equal(info.endpointPath, "/mcp");
+  assert.equal(info.tools.length, 12);
+  const initialize = await fetch(base + "/mcp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json, text/event-stream",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "initialize",
+      params: {
+        protocolVersion: "2025-11-25",
+        capabilities: {},
+        clientInfo: { name: "compiled-api-probe", version: "1" },
+      },
+    }),
+  });
+  assert.equal(initialize.status, 200);
+  assert.match(await initialize.text(), /Élan Modeler/);
+  console.log("Compiled Node ESM entrypoints: 6 modules / 8 checks passed.");
 } finally {
   server.closeAllConnections();
   await new Promise((resolve, reject) =>

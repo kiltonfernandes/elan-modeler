@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-27",
+  "scope": "Own remote MCP server, client setup UI and Vercel entrypoints",
+  "automated": {
+    "npm_test": { "passed": 46, "failed": 0, "files": 3 },
+    "mcp_integration_tests": 15,
+    "mcp_test_transport": "Real HTTP with the official MCP v2 client, legacy 2025 JSON-RPC client, and the editor connection probe",
+    "test_database": "Disposable local SQLite/libSQL with real migrations, not a remote Turso account",
+    "build": "passed: frontend TypeScript, server TypeScript, Vite production bundle",
+    "compiled_server_entrypoints": { "modules": 6, "checks_passed": 8 },
+    "production_dependency_audit": { "vulnerabilities_reported": 0 }
+  },
+  "covered": [
+    "Discovery of all 12 tools, read/write annotations and workflow resource",
+    "Modern SDK client and stateless 2025 initialize/notification/tool requests",
+    "Connection discovery without a database and separate database error reporting",
+    "Model creation, exact XML retrieval and metamodel parsing",
+    "Appending and updating diagrams while preserving unrelated XML, source data and comments",
+    "Stale revisions, concurrent updates and archived model edit protection",
+    "Invalid XML and DTD rejection without persisting a change",
+    "Literal search, readable fetch and canonical model URLs",
+    "Unicode XML chunk reconstruction",
+    "Reversible archive and restore",
+    "Malformed JSON, invalid arguments, unknown tools and origin/host checks",
+    "Optional Notion Bearer authentication without restricting the public MCP endpoint",
+    "Vercel pre-parsed request body and rewritten Notion profile handling",
+    "Compiled Node ESM entrypoints load without accessing a configured database"
+  ],
+  "pending_external_validation": [
+    "Manual Vercel deployment and remote Turso credentials belong to the user's deployment step",
+    "ChatGPT and Notion account connections require the actual public HTTPS deployment URL",
+    "Visual review, clipboard interaction and editor deep-link opening were not browser-tested: browser observation permission was declined"
+  ],
+  "limitations": [
+    "MCP reads cloud-saved models; local unsaved browser edits are not synchronized automatically",
+    "BPMN metamodel parsing is not certification of complete semantic conformance",
+    "The optional Notion token does not make the intentionally public workspace private"
+  ]
+}
