@@ -7,27 +7,34 @@
   "main": "desktop/main.cjs",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run typecheck:server && vite build",
+    "typecheck:server": "tsc -p tsconfig.server.json",
+    "check:server-build": "tsc -p tsconfig.server.json --noEmit false --outDir work/server-build && node scripts/check-functions.mjs",
+    "dev:api": "node --env-file-if-exists=.env.local scripts/dev-api.ts",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate.ts",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "desktop": "npm run build && electron .",
     "desktop:package": "npm run build && electron-builder --win portable",
     "examples": "node scripts/generate-examples.mjs",
-    "format": "prettier --write src qa desktop scripts *.html *.json *.ts *.md docs/*.md"
+    "format": "prettier --write src qa desktop scripts api server shared *.html *.json *.ts *.md docs/*.md"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@tursodatabase/serverless": "^1.4.1",
     "bpmn-auto-layout": "^1.0.1",
     "bpmn-js": "^18.16.0",
     "bpmn-js-token-simulation": "^0.38.0",
     "chor-js": "0.7.1",
     "ids": "2.0.1",
-    "jspdf": "3.0.4",
+    "jspdf": "^4.2.1",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",

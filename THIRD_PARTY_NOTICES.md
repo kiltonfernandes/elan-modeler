@@ -17,6 +17,8 @@
 
 Copies of the principal package notices are in `licenses/`. Dependency source and complete notices are also available in the packages installed by `npm ci`.
 
+The optional backend uses `@libsql/client` (MIT, libSQL authors) and `@tursodatabase/serverless` (MIT, Turso authors). These SDKs are used on the server; their database credentials are not part of the frontend bundle. See [libSQL client](https://github.com/tursodatabase/libsql-client-ts) and [Turso](https://github.com/tursodatabase/turso).
+
 The bpmn.io attribution watermark is retained, visible and clickable. Do not remove, hide, cover or modify the code that displays it. The Élan interface and third-party notices do not replace that requirement.
 
 Upstream projects: [bpmn-js](https://github.com/bpmn-io/bpmn-js), [chor-js](https://github.com/bptlab/chor-js), [token simulation](https://github.com/bpmn-io/bpmn-js-token-simulation), [bpmn-auto-layout](https://github.com/bpmn-io/bpmn-auto-layout), [React](https://github.com/facebook/react), [Lucide](https://github.com/lucide-icons/lucide), [JSZip](https://github.com/Stuk/jszip), [jsPDF](https://github.com/parallax/jsPDF), [Electron](https://github.com/electron/electron).

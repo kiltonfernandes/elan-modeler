@@ -7,3 +7,9 @@ release/
 !.env.example
 .DS_Store
 test-results/
+.vercel/
+work/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal

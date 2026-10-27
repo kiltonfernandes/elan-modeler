@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-27",
+  "tests": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "cloud API with real SQLite and HTTP persists full projects, comments and original XML; lists metadata only",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP prevents lost updates from two tabs using a conditional SQL update",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP accepts Vercel's pre-parsed JSON and dynamic route query parameters",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP archives reversibly and rejects writes against archived models",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP validates malformed projects, active IDs, duplicate IDs and XML entities",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP rejects oversized payloads, malformed JSON and wrong content types",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP uses method/route validation and rejects cross-origin browser writes",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP exposes readiness without credentials or internal database errors",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP uses bound parameters for names containing SQL syntax",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP paginates metadata with stable limits",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP migrations are idempotent and retain a checksum",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP rejects changes to already applied migrations",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP does not expose SDK errors or credentials in API responses",
+        "status": "passed"
+      },
+      {
+        "name": "cloud API with real SQLite and HTTP rolls back failed migrations without recording their version",
+        "status": "passed"
+      },
+      {
+        "name": "server database configuration selects the current Turso driver and the libSQL driver by URL",
+        "status": "passed"
+      },
+      {
+        "name": "server database configuration rejects missing credentials and local files in Vercel",
+        "status": "passed"
+      },
+      {
+        "name": "BPMN interchange opens the recruitment collaboration and nested subprocess with the BPMN metamodel",
+        "status": "passed"
+      },
+      {
+        "name": "BPMN interchange retains custom attributes and escapes XML control characters",
+        "status": "passed"
+      },
+      {
+        "name": "BPMN interchange rejects malformed and entity-bearing XML",
+        "status": "passed"
+      },
+      {
+        "name": "BPMN interchange parses BPMN without a participant diagram without throwing",
+        "status": "passed"
+      },
+      {
+        "name": "XPDL conversion round-trips lane assignment, task kinds, gateway branches and nested activities",
+        "status": "passed"
+      },
+      {
+        "name": "XPDL conversion imports XPDL 2.1 with fallback coordinates",
+        "status": "passed"
+      },
+      {
+        "name": "XPDL conversion rejects non-XPDL documents",
+        "status": "passed"
+      },
+      {
+        "name": "Visio adapters round-trips generic VDX shapes and connected flows without claiming BPMN stencil fidelity",
+        "status": "passed"
+      },
+      {
+        "name": "Visio adapters reads an OPC VSDX page and its master mapping",
+        "status": "passed"
+      },
+      {
+        "name": "Visio adapters rejects binary VSD",
+        "status": "passed"
+      },
+      {
+        "name": "validation and persistence accepts the complete recruitment example including the nested parallel split and join",
+        "status": "passed"
+      },
+      {
+        "name": "validation and persistence detects unreachable nodes and disconnected branches",
+        "status": "passed"
+      },
+      {
+        "name": "validation and persistence detects a sequence flow into a start event",
+        "status": "passed"
+      },
+      {
+        "name": "validation and persistence rejects corrupt projects and duplicate diagram IDs",
+        "status": "passed"
+      },
+      {
+        "name": "validation and persistence round-trips the model with comments",
+        "status": "passed"
+      }
+    ]
+  },
+  "compiled_node_esm_entrypoints": 4,
+  "browser": [
+    "Save a project with 3 diagrams",
+    "Update to revision 2",
+    "Open persisted project and retain local snapshot",
+    "Archive and restore to revision 4",
+    "Reopen after page reload with cloud link preserved",
+    "PT-BR and English cloud panel",
+    "PDF download using jsPDF 4.2.1"
+  ],
+  "database_tested": "local SQLite/libSQL through real HTTP",
+  "remote_turso_tested": false,
+  "vercel_deployed": false,
+  "public_access": true,
+  "screenshot": "cloud-local-test.png",
+  "frontend_secret_isolation": "passed: dummy server token and database URL absent from compiled frontend"
+}

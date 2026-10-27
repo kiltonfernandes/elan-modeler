@@ -52,7 +52,10 @@ import {
   Flag,
   LayoutTemplate,
   GripVertical,
+  Cloud,
 } from "lucide-react";
+import CloudPanel from "./CloudPanel";
+import type { CloudModel, CloudSummary } from "../shared/cloud";
 import Modeler from "./HybridModeler";
 import { choreographyXML, conversationXML } from "./special-models";
 import BpmnPalette from "./BpmnPalette";
@@ -308,6 +311,54 @@ export default function App() {
   langRef.current = lang;
   const t = (k: Key) => strings[lang][k];
   const [project, setProject] = useState<Project>(loadInitial);
+  const [cloudOpen, setCloudOpen] = useState(false);
+  const [cloudModel, setCloudModel] = useState<CloudSummary | null>(() => {
+    try {
+      const link = JSON.parse(
+        sessionStorage.getItem("elan-cloud-link") || "null",
+      );
+      return link?.projectMarker === project.activeId &&
+        typeof link.model?.id === "string" &&
+        Number.isSafeInteger(link.model.revision)
+        ? link.model
+        : null;
+    } catch {
+      return null;
+    }
+  });
+  useEffect(() => {
+    try {
+      if (!cloudModel) sessionStorage.removeItem("elan-cloud-link");
+      else {
+        const {
+          id,
+          name,
+          revision,
+          diagramCount,
+          createdAt,
+          updatedAt,
+          archivedAt,
+        } = cloudModel;
+        sessionStorage.setItem(
+          "elan-cloud-link",
+          JSON.stringify({
+            projectMarker: project.activeId,
+            model: {
+              id,
+              name,
+              revision,
+              diagramCount,
+              createdAt,
+              updatedAt,
+              archivedAt,
+            },
+          }),
+        );
+      }
+    } catch {
+      /* Cloud links are optional; local projects remain available. */
+    }
+  }, [cloudModel, project.activeId]);
   const projectRef = useRef(project);
   projectRef.current = project;
   const [tab, setTab] = useState<Key>("home"),
@@ -828,6 +879,7 @@ export default function App() {
             );
           recoveryNeeded.current = false;
           persist(p);
+          setCloudModel(null);
         } catch (e) {
           await openXML(
             previous.diagrams.find((d) => d.id === previous.activeId)!.xml,
@@ -1105,6 +1157,17 @@ export default function App() {
           </span>
         </div>
         <div className="header-right">
+          {location.protocol !== "file:" && (
+            <button
+              className="cloud-header-button"
+              title={lang === "en" ? "Cloud models" : "Modelos na nuvem"}
+              onClick={() => setCloudOpen(true)}
+              disabled={busy || !ready}
+            >
+              <Cloud size={17} />
+              <span>{lang === "en" ? "Cloud" : "Nuvem"}</span>
+            </button>
+          )}
           <span className={`save-state ${saved ? "" : "unsaved"}`}>
             <CheckCircle2 size={14} />
             {saved ? t("saved") : t("changed")}
@@ -2311,6 +2374,39 @@ export default function App() {
           <X size={18} />
           {t("close")} · Esc
         </button>
+      )}
+      {cloudOpen && (
+        <CloudPanel
+          lang={lang}
+          current={cloudModel}
+          capture={capture}
+          onSaved={setCloudModel}
+          onClose={() => setCloudOpen(false)}
+          onOpen={async (model: CloudModel) => {
+            const previous = await capture();
+            const next = parseProject(JSON.stringify(model.project));
+            for (const diagram of next.diagrams) xmlDocument(diagram.xml);
+            try {
+              await openXML(
+                next.diagrams.find((d) => d.id === next.activeId)!.xml,
+              );
+              storeSnapshot(
+                previous,
+                lang === "en"
+                  ? "Before opening cloud model"
+                  : "Antes de abrir modelo da nuvem",
+              );
+              recoveryNeeded.current = false;
+              persist(next);
+              setCloudModel(model);
+            } catch (error) {
+              await openXML(
+                previous.diagrams.find((d) => d.id === previous.activeId)!.xml,
+              );
+              throw error;
+            }
+          }}
+        />
       )}
       {modal && (
         <div

@@ -116,7 +116,7 @@ export const strings = {
     simulationHint:
       "Simulação de tokens: clique no evento inicial e acompanhe o fluxo. Não calcula recursos, custos ou calendários BPSim.",
     localNotice:
-      "Seus modelos ficam neste navegador. Exporte .elan para criar uma cópia de segurança.",
+      "Cópia local salva neste navegador. Exporte .elan para criar uma cópia de segurança.",
     unavailable: "Formato sem suporte",
     nativeBpm:
       "O formato .bpm do Bizagi ainda não é suportado. No Bizagi, exporte o diagrama para BPMN 2.0 e importe aqui.",
@@ -281,7 +281,7 @@ export const strings = {
     simulationHint:
       "Token simulation: click the start event and follow the flow. Does not calculate BPSim resources, costs or calendars.",
     localNotice:
-      "Models are stored in this browser. Export .elan for a backup.",
+      "A local copy is stored in this browser. Export .elan for a backup.",
     unavailable: "Unsupported format",
     nativeBpm:
       "Bizagi .bpm files are not supported yet. Export BPMN 2.0 from Bizagi and import it here.",

@@ -9,7 +9,7 @@ Verificação local realizada em 27/10/2026, Windows x64. Estes resultados descr
 | Schema oficial OMG           | Os quatro exemplos em `examples/` passaram no schema BPMN 2.0.2 com seus imports oficiais, usando lxml. Validade XML não comprova toda a semântica.                                                                                                                                                       |
 | Publicação                   | Downloads reais de BPMN, PDF, DOCX e XLSX confirmados pelos botões da interface. PDF renderizado e inspecionado nas duas páginas; DOCX aberto por python-docx com um diagrama e 62 parágrafos; XLSX aberto por openpyxl com 20 linhas e 5 colunas. Sem revisão visual em Microsoft Office nesta execução. |
 | Interface                    | PT-BR, seleção/propriedades, edição de tarefa, navegação de subprocesso, criação de coreografia/conversação e menus da paleta conferidos na prévia.                                                                                                                                                       |
-| Build                        | TypeScript e Vite concluídos. Empacotamento portátil Windows por Electron Builder concluído; a distribuição desktop carregou o modelo, a paleta e os painéis em uma janela nativa. O executável não tem assinatura comercial.                                                                                                                                                                             |
+| Build                        | TypeScript e Vite concluídos. Empacotamento portátil Windows por Electron Builder concluído; a distribuição desktop carregou o modelo, a paleta e os painéis em uma janela nativa. O executável não tem assinatura comercial.                                                                             |
 
 ## Reproduzir
 
@@ -24,7 +24,15 @@ Abra `/qa.html` e clique em **Run integration checks**. O JSON completo fica dis
 
 Os resultados salvos estão em [browser-integration.json](browser-integration.json), [bpmn-schema-validation.json](bpmn-schema-validation.json) e [publication-validation.json](publication-validation.json). A captura da interface está em [elan-modeler.png](elan-modeler.png).
 
-## Limites dos resultados
+## Preparação adicional: backend Vercel + Turso
+
+Na etapa de backend, a suíte passou a ter **31 testes aprovados**: os 15 anteriores e 16 novos de API, SQL e configuração. Também foram aprovadas quatro verificações dos entrypoints da API compilados para Node ESM, sem conexão remota. O build inclui a checagem TypeScript do servidor.
+
+No navegador, o painel Nuvem salvou um projeto com três diagramas, atualizou sua revisão, reabriu o conteúdo, arquivou/restaurou o modelo e preservou o vínculo após recarregar a página. As interfaces PT-BR/EN foram conferidas. A atualização para jsPDF 4.2.1 foi acompanhada de download e renderização de um PDF de duas páginas.
+
+Veja [backend-validation.json](backend-validation.json) e [a captura do teste local](cloud-local-test.png). Essa verificação usa SQLite/libSQL local e HTTP real. Seu Turso remoto e a publicação na Vercel ficam para o setup manual; não foram apresentados como ambientes já configurados ou testados.
+
+## Limites de cobertura BPMN
 
 - Os adaptadores XPDL/Visio foram exercitados com fixtures controladas; ainda precisam de um corpus de arquivos reais de diferentes versões e fornecedores.
 - O schema oficial foi aplicado aos exemplos; o produto não inclui uma validação XSD completa em tempo de edição.

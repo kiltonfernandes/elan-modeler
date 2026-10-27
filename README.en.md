@@ -1,5 +1,7 @@
 # Élan Modeler
 
+The web app is prepared for manual deployment to Vercel with Turso storage. See the [deployment guide](docs/deploy-vercel-turso.md) and [HTTP API](docs/backend-api.md). Cloud storage is an intentionally public workspace without sign-in; database credentials remain on the server. The Cloud panel saves/opens projects manually and uses optimistic revisions to prevent lost updates. Local autosave continues. Set the server environment variables and run `npm run db:migrate` before deploying.
+
 An independent BPMN modeling application with Brazilian Portuguese and English interfaces. **Élan** is a French word for forward momentum. Not affiliated with Bizagi.
 
 Requires Node.js 22.18+.
@@ -21,7 +23,7 @@ Native interchange is BPMN 2.0 XML. `.elan` contains multiple BPMN documents and
 
 This release is **not certified for complete BPMN conformance**, nor does it implement every Bizagi cloud/enterprise feature. Choreography and conversation coverage, semantics and interchange need dedicated review. Cloud collaboration, BPSim quantitative analysis, production execution and SharePoint/MediaWiki publication are not implemented. Milestones are an Élan extension over BPMN groups.
 
-Models are stored locally. Export `.elan` backups; local storage can be limited by the environment. No backend or model upload is used. Local version history is not included in `.elan` files.
+Local copies are autosaved. The optional web Cloud panel sends projects to the configured Turso database through the Vercel API. Cloud saves are manual, limited to 3 MiB per project, and preserve diagrams and comments. Export `.elan` backups; local storage can be limited by the environment. Local version history is not included in `.elan` files or synchronized to the cloud.
 
 Run `npm test` and `npm run build`. The `/qa.html` development page exercises real rendering, model changes and XML round trips in disposable diagrams. See [BPMN coverage](docs/cobertura-bpmn.md), [format research](docs/compatibilidade-bizagi.md), and [validation evidence](docs/validacao.md).
 

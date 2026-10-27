@@ -6,6 +6,8 @@ Um modelador BPMN em português brasileiro e inglês, com nome francês: **élan
 
 ## Executar
 
+Para publicar na web, siga o [guia de deploy manual na Vercel com Turso](docs/deploy-vercel-turso.md). A configuração está pronta no repositório; você cria o banco, executa a migração e importa o projeto no painel da Vercel.
+
 Use Node.js **22.18 ou superior** e npm.
 
 ```bash
@@ -68,7 +70,9 @@ O objetivo do projeto é ampliar a cobertura de modelagem BPMN 2.0.2. **Esta ver
 
 Colaboração em nuvem, autenticação, SharePoint/MediaWiki, mineração de processos, análise quantitativa BPSim e execução produtiva não estão implementadas. A simulação de tokens não calcula calendários, capacidade, custos ou distribuições estatísticas. A validação verifica um conjunto explícito de regras estruturais; revisão semântica continua necessária.
 
-Os dados ficam no armazenamento local deste navegador/aplicativo. Não há backend, envio de modelos, analytics ou dependência de fontes externas. **Exporte `.elan` para manter cópias de segurança.** O limite de armazenamento depende do ambiente; o aplicativo mostra um aviso se o salvamento falhar. O histórico local mantém até 20 versões e não é incluído no arquivo `.elan`.
+O salvamento local continua automático. A versão web também oferece **Nuvem** para salvar, abrir, atualizar e arquivar modelos em um banco Turso por uma API na Vercel. O envio à nuvem é manual nesta etapa, preserva os documentos/XML e comentários e detecta conflitos entre abas por revisão. O workspace é público, sem login, conforme a configuração escolhida. As credenciais do Turso ficam no servidor. Consulte [a API](docs/backend-api.md) e [o setup](docs/deploy-vercel-turso.md).
+
+**Exporte `.elan` para manter cópias de segurança.** O limite de armazenamento local depende do ambiente; o aplicativo mostra um aviso se o salvamento falhar. O histórico local mantém até 20 versões e não é incluído no arquivo `.elan` nem sincronizado com o banco. Na nuvem, o limite por projeto é 3 MiB; projetos maiores continuam utilizáveis localmente. Não há analytics ou dependência de fontes externas.
 
 ## Verificar
 
