@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "platform": "Windows x64",
+  "source_commit": "289f04f7546eb829bbfd401dc0fc528bda6b26c1",
+  "artifact": "Élan Modeler 0.1.0.exe",
+  "bytes": 94598647,
+  "sha256": "82ec4bc679b7b6eabc9a008778809f9512c039c00d2959c95517f151ef3ec22c",
+  "portable_packaging": "completed",
+  "unpacked_distribution_startup": "verified visually: recruitment model, canvas, palette, document list and properties panel",
+  "commercial_code_signature": false,
+  "screenshot": "elan-desktop.png"
+}
